@@ -7,3 +7,4 @@ create a custom public URL for the election... etc...
 This application features are Reset password,delete election,edit elction... etc..
 renderlink:-https://online-voting-app-luue.onrender.com/
 Githublink:-https://github.com/Mahesh1062/Online_Voting_App.git
+Database:-PostgresSQL
