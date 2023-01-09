@@ -141,7 +141,6 @@ app.get("/", (request, response) => {
   }
 });
 
-//elections home page
 app.get(
   "/elections",
   connectEnsureLogin.ensureLoggedIn(),
@@ -171,7 +170,6 @@ app.get(
   }
 );
 
-//signup page
 app.get("/signup", (request, response) => {
   response.render("signup", {
     title: "Create a new admin account",
@@ -179,7 +177,6 @@ app.get("/signup", (request, response) => {
   });
 });
 
-//create user account
 app.post("/admin", async (request, response) => {
   if (!request.body.firstName) {
     request.flash("error", "Please fill your first name");
@@ -219,7 +216,6 @@ app.post("/admin", async (request, response) => {
   }
 });
 
-//login page
 app.get("/login", (request, response) => {
   if (request.user) {
     return response.redirect("/elections");
@@ -230,7 +226,6 @@ app.get("/login", (request, response) => {
   });
 });
 
-//voter login page
 app.get("/e/:urlString/voter", async (request, response) => {
   try {
     if (request.user) {
@@ -254,7 +249,6 @@ app.get("/e/:urlString/voter", async (request, response) => {
   }
 });
 
-//login user
 app.post(
   "/session",
   passport.authenticate("Admin", {
@@ -266,7 +260,6 @@ app.post(
   }
 );
 
-//login voter
 app.post(
   "/e/:urlString/voter",
   passport.authenticate("Voter", {
@@ -278,7 +271,6 @@ app.post(
   }
 );
 
-//signout
 app.get("/signout", (request, response, next) => {
   request.logout((err) => {
     if (err) {
@@ -288,7 +280,6 @@ app.get("/signout", (request, response, next) => {
   });
 });
 
-//password reset page
 app.get(
   "/password-reset",
   connectEnsureLogin.ensureLoggedIn(),
@@ -304,7 +295,6 @@ app.get(
   }
 );
 
-//reset user password
 app.post(
   "/password-reset",
   connectEnsureLogin.ensureLoggedIn(),
@@ -353,7 +343,6 @@ app.post(
   }
 );
 
-//new election page
 app.get(
   "/elections/create",
   connectEnsureLogin.ensureLoggedIn(),
@@ -369,7 +358,6 @@ app.get(
   }
 );
 
-//creating new election
 app.post(
   "/elections",
   connectEnsureLogin.ensureLoggedIn(),
@@ -408,7 +396,6 @@ app.post(
   }
 );
 
-//election page
 app.get(
   "/elections/:id",
   connectEnsureLogin.ensureLoggedIn(),
@@ -446,7 +433,6 @@ app.get(
   }
 );
 
-//manage questions page
 app.get(
   "/elections/:id/questions",
   connectEnsureLogin.ensureLoggedIn(),
@@ -490,7 +476,6 @@ app.get(
   }
 );
 
-//add question page
 app.get(
   "/elections/:id/questions/create",
   connectEnsureLogin.ensureLoggedIn(),
@@ -525,7 +510,6 @@ app.get(
   }
 );
 
-//add question
 app.post(
   "/elections/:id/questions/create",
   connectEnsureLogin.ensureLoggedIn(),
@@ -570,7 +554,6 @@ app.post(
   }
 );
 
-//edit question page
 app.get(
   "/elections/:electionID/questions/:questionID/edit",
   connectEnsureLogin.ensureLoggedIn(),
@@ -579,7 +562,7 @@ app.get(
       try {
         const election = await Election.getElection(request.params.electionID);
         if (request.user.id !== election.adminID) {
-          request.flash("error", "Invalid election ID");
+          request.flash("error", "InCorrect election ID");
           return response.redirect("/elections");
         }
         if (election.running) {
@@ -608,7 +591,6 @@ app.get(
   }
 );
 
-//edit question
 app.put(
   "/elections/:electionID/questions/:questionID/edit",
   connectEnsureLogin.ensureLoggedIn(),
@@ -649,7 +631,6 @@ app.put(
   }
 );
 
-//delete question
 app.delete(
   "/elections/:electionID/questions/:questionID",
   connectEnsureLogin.ensureLoggedIn(),
@@ -686,7 +667,6 @@ app.delete(
   }
 );
 
-//question page
 app.get(
   "/elections/:id/questions/:questionID",
   connectEnsureLogin.ensureLoggedIn(),
@@ -732,7 +712,6 @@ app.get(
   }
 );
 
-//adding options
 app.post(
   "/elections/:id/questions/:questionID",
   connectEnsureLogin.ensureLoggedIn(),
@@ -775,7 +754,6 @@ app.post(
   }
 );
 
-//delete options
 app.delete(
   "/elections/:electionID/questions/:questionID/options/:optionID",
   connectEnsureLogin.ensureLoggedIn(),
@@ -805,7 +783,6 @@ app.delete(
   }
 );
 
-//edit option page
 app.get(
   "/elections/:electionID/questions/:questionID/options/:optionID/edit",
   connectEnsureLogin.ensureLoggedIn(),
@@ -843,7 +820,6 @@ app.get(
   }
 );
 
-//update options
 app.put(
   "/elections/:electionID/questions/:questionID/options/:optionID/edit",
   connectEnsureLogin.ensureLoggedIn(),
@@ -882,7 +858,6 @@ app.put(
   }
 );
 
-//voter page
 app.get(
   "/elections/:electionID/voters",
   connectEnsureLogin.ensureLoggedIn(),
@@ -921,7 +896,6 @@ app.get(
   }
 );
 
-//add voter page
 app.get(
   "/elections/:electionID/voters/create",
   connectEnsureLogin.ensureLoggedIn(),
@@ -952,7 +926,6 @@ app.get(
   }
 );
 
-//add voter
 app.post(
   "/elections/:electionID/voters/create",
   connectEnsureLogin.ensureLoggedIn(),
@@ -1007,7 +980,6 @@ app.post(
   }
 );
 
-//delete voter
 app.delete(
   "/elections/:electionID/voters/:voterID",
   connectEnsureLogin.ensureLoggedIn(),
@@ -1044,7 +1016,6 @@ app.delete(
   }
 );
 
-//voter password reset page
 app.get(
   "/elections/:electionID/voters/:voterID/edit",
   connectEnsureLogin.ensureLoggedIn(),
@@ -1083,7 +1054,6 @@ app.get(
   }
 );
 
-//reset user password
 app.post(
   "/elections/:electionID/voters/:voterID/edit",
   connectEnsureLogin.ensureLoggedIn(),
@@ -1130,7 +1100,6 @@ app.post(
   }
 );
 
-//election preview
 app.get(
   "/elections/:electionID/preview",
   connectEnsureLogin.ensureLoggedIn(),
@@ -1210,7 +1179,6 @@ app.get(
   }
 );
 
-//launch an election
 app.put(
   "/elections/:electionID/launch",
   connectEnsureLogin.ensureLoggedIn(),
@@ -1240,7 +1208,6 @@ app.put(
   }
 );
 
-//end an election
 app.put(
   "/elections/:electionID/end",
   connectEnsureLogin.ensureLoggedIn(),
