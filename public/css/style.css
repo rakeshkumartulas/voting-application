@@ -1,4 +1,8 @@
-.option-item:hover .delete-icon {
-    display: block;
-    font-family: 'Times New Roman', Times, serif;
+body{
+  color:grey;
+  /* background-color: green; */
+  font-family: 'Courier New', Courier, monospace;
+}
+.Todo-item:hover .trash-icon{
+  display: block;
   }
