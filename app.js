@@ -1267,7 +1267,7 @@ app.get("/e/:urlString/", async (request, response) => {
           csrfToken: request.csrfToken(),
         });
       } else {
-        return response.render("404");
+        return response.render("errordisplay");
       }
     } else if (request.user.role === "admin") {
       request.flash("error", "You cannot vote as Admin");
@@ -1345,7 +1345,7 @@ app.get("/e/:urlString/results", async (request, response) => {
 });
 
 app.use(function (request, response) {
-  response.status(404).render("404");
+  response.status(404).render("errordisplay");
 });
 
 module.exports = app;

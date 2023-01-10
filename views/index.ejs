@@ -8,32 +8,12 @@
     <link rel="stylesheet" href="./css/style.css" />
     <title><%= title %></title>
   </head>
-  <style>
-    #a{
-    color: brown;
-    margin-left: 370px;
-    font-size: 60px;
-    margin-top: 70px;
-    }
-    #b{
-      background-color: aqua;
-      margin-right: 350px;
-    }
-  </style>
-  <body class="bg-gray-50">
-    <nav>
+   <body>
+    
       <div
-        class="container flex flex-wrap items-center justify-between mx-auto"
-      >
-        <a href="/" class="py-2 px-4 flex items-center">
-          <span
-            class="self-center text-xl font-semibold whitespace-nowrap text-blue-800"
-            <div id="a">
-              Eelection-Voting</div>
-          >
-        </a>
+      <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Welcome to Online voting Application</h1>
       </div>
-    </nav>
+   
     <div>
       <% if (messages && messages.error && messages.error.length > 0) { %>
           <% for(var i=0; i<messages.error.length; i++) { %>
@@ -54,6 +34,8 @@
           </p>
         </div>
       </div>
+    </div>
+    <div class="mb-0"> <%- include('footer.ejs') %>
     </div>
   </body>
 </html>
