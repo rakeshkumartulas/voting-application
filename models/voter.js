@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
+    
     static async markAsVoted(id) {
       return await this.update(
         {

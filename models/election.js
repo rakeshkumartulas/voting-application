@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
+    
     static launchElection(id) {
       return this.update(
         {

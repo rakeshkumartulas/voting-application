@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
+    
     static updateQuestion({ question, description, id }) {
       return this.update(
         {

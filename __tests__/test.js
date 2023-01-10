@@ -40,10 +40,10 @@ describe("Online voting application", function () {
     let res = await agent.get("/signup");
     const csrfToken = extractCsrfToken(res);
     res = await agent.post("/admin").send({
-      firstName: "mahesh",
-      lastName: "chy",
-      email: "userid1@gmail.com",
-      password: "12345678",
+      firstName: "Rakesh",
+      lastName: "Kumar",
+      email: "rakesh@gmail.com",
+      password: "1234567890",
       _csrf: csrfToken,
     });
     expect(res.statusCode).toBe(302);
@@ -53,7 +53,7 @@ describe("Online voting application", function () {
     const agent = request.agent(server);
     let res = await agent.get("/elections");
     expect(res.statusCode).toBe(302);
-    await login(agent, "userid1@gmail.com", "12345678");
+    await login(agent, "rakesh@gmail.com", "1234567890");
     res = await agent.get("/elections");
     expect(res.statusCode).toBe(200);
   });
@@ -69,7 +69,7 @@ describe("Online voting application", function () {
 
   test("Creating a election", async () => {
     const agent = request.agent(server);
-    await login(agent, "userid1@gmail.com", "12345678");
+    await login(agent, "rakesh@gmail.com", "1234567890");
     const res = await agent.get("/elections/create");
     const csrfToken = extractCsrfToken(res);
     const response = await agent.post("/elections").send({
@@ -82,7 +82,7 @@ describe("Online voting application", function () {
 
   test("Adding a question", async () => {
     const agent = request.agent(server);
-    await login(agent, "userid1@gmail.com", "12345678");
+    await login(agent, "rakesh@gmail.com", "1234567890");
 
     let res = await agent.get("/elections/create");
     let csrfToken = extractCsrfToken(res);
@@ -112,7 +112,7 @@ describe("Online voting application", function () {
 
   test("Deleting a question", async () => {
     const agent = request.agent(server);
-    await login(agent, "userid1@gmail.com", "12345678");
+    await login(agent, "rakesh@gmail.com", "1234567890");
 
     //create new election
     let res = await agent.get("/elections/create");
@@ -180,7 +180,7 @@ describe("Online voting application", function () {
 
   test("Updating a question", async () => {
     const agent = request.agent(server);
-    await login(agent, "userid1@gmail.com", "12345678");
+    await login(agent, "rakesh@gmail.com", "1234567890");
 
     let res = await agent.get("/elections/create");
     let csrfToken = extractCsrfToken(res);
@@ -233,7 +233,7 @@ describe("Online voting application", function () {
 
   test("Adding a option", async () => {
     const agent = request.agent(server);
-    await login(agent, "userid1@gmail.com", "12345678");
+    await login(agent, "rakesh@gmail.com", "1234567890");
 
     let res = await agent.get("/elections/create");
     let csrfToken = extractCsrfToken(res);
@@ -282,7 +282,7 @@ describe("Online voting application", function () {
 
   test("Deleting a option", async () => {
     const agent = request.agent(server);
-    await login(agent, "userid1@gmail.com", "12345678");
+    await login(agent, "rakesh@gmail.com", "12345678");
 
     let res = await agent.get("/elections/create");
     let csrfToken = extractCsrfToken(res);
@@ -368,7 +368,7 @@ describe("Online voting application", function () {
 
   test("Updating a option", async () => {
     const agent = request.agent(server);
-    await login(agent, "userid1@gmail.com", "12345678");
+    await login(agent, "rakesh@gmail.com", "1234567890");
 
     let res = await agent.get("/elections/create");
     let csrfToken = extractCsrfToken(res);
@@ -441,7 +441,7 @@ describe("Online voting application", function () {
 
   test("Adding a voter", async () => {
     const agent = request.agent(server);
-    await login(agent, "userid1@gmail.com", "12345678");
+    await login(agent, "rakesh@gmail.com", "1234567890");
 
     let res = await agent.get("/elections/create");
     let csrfToken = extractCsrfToken(res);
@@ -471,7 +471,7 @@ describe("Online voting application", function () {
 
   test("Deleting a voter", async () => {
     const agent = request.agent(server);
-    await login(agent, "userid1@gmail.com", "12345678");
+    await login(agent, "rakesh@gmail.com", "1234567890");
 
     let res = await agent.get("/elections/create");
     let csrfToken = extractCsrfToken(res);
@@ -502,8 +502,8 @@ describe("Online voting application", function () {
     res = await agent
       .post(`/elections/${latestElection.id}/voters/create`)
       .send({
-        voterid: "mahesh01",
-        password: "12345678",
+        voterid: "rakeshkumar",
+        password: "1234567890",
         _csrf: csrfToken,
       });
 
@@ -537,7 +537,7 @@ describe("Online voting application", function () {
 
   test("Preview and Launch validation", async () => {
     const agent = request.agent(server);
-    await login(agent, "userid1@gmail.com", "12345678");
+    await login(agent, "rakesh@gmail.com", "1234567890");
 
     let res = await agent.get("/elections/create");
     let csrfToken = extractCsrfToken(res);
@@ -560,7 +560,7 @@ describe("Online voting application", function () {
 
   test("Launch an election", async () => {
     const agent = request.agent(server);
-    await login(agent, "userid1@gmail.com", "12345678");
+    await login(agent, "rakesh@gmail.com", "1234567890");
 
     let res = await agent.get("/elections/create");
     let csrfToken = extractCsrfToken(res);
@@ -621,8 +621,8 @@ describe("Online voting application", function () {
     res = await agent
       .post(`/elections/${latestElection.id}/voters/create`)
       .send({
-        voterid: "mahesh01",
-        password: "12345678",
+        voterid: "rakeshkumar",
+        password: "1234567890",
         _csrf: csrfToken,
       });
 
@@ -639,7 +639,7 @@ describe("Online voting application", function () {
 
   test("Cannot edit questions after launching election", async () => {
     const agent = request.agent(server);
-    await login(agent, "userid1@gmail.com", "12345678");
+    await login(agent, "rakesh@gmail.com", "1234567890");
 
     let res = await agent.get("/elections/create");
     let csrfToken = extractCsrfToken(res);
@@ -700,7 +700,7 @@ describe("Online voting application", function () {
       .post(`/elections/${latestElection.id}/voters/create`)
       .send({
         voterid: "juna04",
-        password: "12345678",
+        password: "1234567890",
         _csrf: csrfToken,
       });
 

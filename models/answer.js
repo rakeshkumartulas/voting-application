@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Answer.init({
-    
+   
   }, {
     sequelize,
     modelName: 'Answer',

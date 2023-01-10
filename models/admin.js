@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
         password,
       });
     }
-
     static associate(models) {
       Admin.hasMany(models.Election, {
         foreignKey: "adminID",
